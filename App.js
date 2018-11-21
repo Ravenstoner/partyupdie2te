@@ -1,17 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Dimensions, TouchableHighlight, StatusBar, Animated } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Dimensions, TouschableWithoutFeedback, StatusBar, Animated } from 'react-native';
 import { LinearGradient } from 'expo';
 import SvgUri from 'react-native-svg-uri';
 import { Font } from 'expo';
+import FollowButton from './Components/FollowButton';
 
 export default class App extends React.Component {
 
     state = {
         fontLoaded: false,
     };
-
-    scrollAnimatedValue = new Animated.Value(0);
-
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -22,14 +20,13 @@ export default class App extends React.Component {
         this.setState({ fontLoaded: true });
     }
 
-    scrollTest() {
-        alert("oagashit0");
-    }
-
   render() {
 
     return (
       <View style={{flex: 1, backgroundColor: '#272727'}}>
+        <StatusBar
+            barStyle="light-content"
+        />
         <View style={{
             flex: 1,
             backgroundColor: '#fff',
@@ -48,39 +45,36 @@ export default class App extends React.Component {
             style={{flex: 1, width: undefined, height: undefined}}
             source={require('./assets/juju.jpg')}
           />
-          <View style={{flexDirection: 'row', position: 'absolute', bottom: 8}}>
+          <View style={{flexDirection: 'row', position: 'absolute', bottom: 8, zIndex: 1}}>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-                <SvgUri width="30" height="30" source={require('./assets/home.svg')} />
+                <SvgUri width="26" height="26" source={require('./assets/heart.svg')} />
                 {
                     this.state.fontLoaded ? (
-                    <Animated.Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 24 }}>
-                        {this.scrollAnimatedValue.interpolate({
-                            inputRange: [0, 10],
-                            outputRange: [10, 20],
-                            extrapolate: 'clamp',
-                        })}
-                    </Animated.Text>
+                    <Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 20 }}>
+                        1.234
+                    </Text>
                     ) : null
                 }
             </View>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-                <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
+                <SvgUri width="26" height="26" source={require('./assets/add.svg')} />
                 {
                     this.state.fontLoaded ? (
-                    <Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 24 }}>
+                    <Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 20 }}>
                         380
                     </Text>
                     ) : null
                 }
             </View>
           </View>
+          <LinearGradient colors={['transparent', '#000']} style={{opacity: .2, width: '100%', height: '50%', position: 'absolute', bottom: 0}} />
         </View>
         <View style={{flex: 1}}>
           <ScrollView style={{paddingLeft: 8, paddingRight: 8}} scrollEventThrottle={8} onScroll={Animated.event(
               [{nativeEvent:{contentOffset: {y: this.state.scrollY}}}]
           )}>
               <View style={{marginTop: 8, flexDirection: 'row'}}>
-                <View style={{flex: 1}}>
+                <View style={{flex: 2}}>
                 {
                     this.state.fontLoaded ? (
                     <Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 30 }}>
@@ -90,41 +84,34 @@ export default class App extends React.Component {
                 }
                 {
                     this.state.fontLoaded ? (
-                    <Text style={{ fontFamily: 'MoL', color: '#f4f4f4', fontSize: 11, opacity: .7 }}>
+                    <Text style={{ fontFamily: 'MoL', color: '#f4f4f4', fontSize: 12, opacity: .6 }}>
                         @joDoe
                     </Text>
                     ) : null
                 }
                 </View>
-                <View style={{alignItems: 'flex-end', justifyContent: 'center', paddingLeft: 8}}>
-                  <LinearGradient colors={['#E04040', '#962D2D']} start={[0, 0]} end={[1, 0.1]} style={{height: 41, width: 118, justifyContent: 'center', alignItems: 'center', borderRadius: 100}}>
-                    {
-                        this.state.fontLoaded ? (
-                        <Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 16 }}>
-                            follow
-                        </Text>
-                        ) : null
-                    }
-                  </LinearGradient>
+                <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'center', paddingLeft: 8}}>
+                    <FollowButton text1={'follow'} text2={'following'}></FollowButton>
                 </View>
               </View>
               <View style={{paddingTop: 8}}>
                 {
                     this.state.fontLoaded ? (
-                    <Text style={{ fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16, opacity: .9 }}>
+                    <Text style={{ fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16, opacity: .9, paddingBottom: 8 }}>
                         Sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
                     </Text>
                     ) : null
                 }
               </View>
               <View>
-                <SvgUri width="undefined" height="30" source={require('./assets/Line.svg')} />
+                <SvgUri width="undefined" height="10" source={require('./assets/Line.svg')} />
               </View>
+
               <View>
                   <View>
                     {
                         this.state.fontLoaded ? (
-                        <Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 16, opacity: .9, paddingBottom: 8}}>
+                        <Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 16, paddingTop: 8, paddingBottom: 8}}>
                             Party
                         </Text>
                         ) : null
@@ -149,46 +136,6 @@ export default class App extends React.Component {
                         </LinearGradient>
                     </ScrollView>
                   </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                    </ScrollView>
-                  </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                        <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[1, 0.1]} style={{height: 93, width: 93, justifyContent: 'center', marginRight: 8, alignItems: 'center', borderRadius: 15, overflow: 'hidden'}}>
-                            <SvgUri width="30" height="30" source={require('./assets/add.svg')} />
-                        </LinearGradient>
-                    </ScrollView>
-                  </View>
-
-
               </View>
           </ScrollView>
         </View>
