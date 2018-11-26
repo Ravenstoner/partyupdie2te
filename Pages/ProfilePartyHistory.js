@@ -46,7 +46,10 @@ export class ProfilePartyHistory extends Component {
             <StatusBar barStyle="light-content" />
 
             <ScrollView>
-                <PartyHistoryPicBox></PartyHistoryPicBox>
+                <PartyHistoryPicBox layout={1}></PartyHistoryPicBox>
+                <PartyHistoryPicBox layout={2}></PartyHistoryPicBox>
+                <PartyHistoryPicBox layout={1}></PartyHistoryPicBox>
+                <PartyHistoryPicBox layout={2}></PartyHistoryPicBox>
             </ScrollView>
 
         </SafeAreaView>
