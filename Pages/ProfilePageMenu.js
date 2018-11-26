@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, SafeAreaView, TouchableWithoutFeedback, Platform, StatusBar } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { Font } from 'expo';
 
 export class ProfilePageMenu extends Component {
 
-  static navigationOptions = {
-    header: null
-  }
-
   state = {
     fontLoaded: false,
+  };
+
+  static navigationOptions = {
+    title: 'Settings',
+    headerStyle: {
+      backgroundColor: '#222',
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 0,
+    },
+    headerTintColor: '#F4F4F4',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },    
   };
 
   async componentDidMount() {
@@ -27,21 +37,10 @@ export class ProfilePageMenu extends Component {
   render() {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: '#272727'}}>
-        <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('ProfilePage')} >
-            <View style={{position: 'absolute', top: 32, right: 16, zIndex: 100}}>
-                <SvgUri style={{}} width="26" height="26" source={require('../assets/close.svg')} />
-            </View>
-        </TouchableWithoutFeedback>
-        <View style={{alignItems: 'center', paddingTop: 8, paddingBottom: 8}}>
-          {
-            this.state.fontLoaded ? (
-            <Text style={{ fontFamily: 'MoB', color: '#f4f4f4', fontSize: 24 }}>
-                Johanna Doe
-            </Text>
-            ) : null
-          }
-        </View>
-        <View style={{flex: 1, padding: 32}}>
+      {/* StatusBar light-content */}
+      <StatusBar barStyle="light-content" />
+
+        <View style={{flex: 1, paddingLeft: 32, paddingRight: 32, paddingTop: 16}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <SvgUri width="26" height="26" source={require('../assets/heart.svg')} />
             {

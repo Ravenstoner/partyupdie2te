@@ -4,11 +4,13 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import ProfilePageMenu from './Pages/ProfilePageMenu';
 import ProfilePage from './Pages/ProfilePage';
+import ProfilePartyHistory from './Pages/ProfilePartyHistory';
 
 const RootStack = createStackNavigator(
     {
       ProfilePageMenu: ProfilePageMenu,
-      ProfilePage: ProfilePage
+      ProfilePage: ProfilePage,
+      ProfilePartyHistory: ProfilePartyHistory
     },
     {
       initialRouteName: "ProfilePage"

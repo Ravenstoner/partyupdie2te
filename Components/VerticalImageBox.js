@@ -5,14 +5,10 @@ import SvgUri from 'react-native-svg-uri';
 
 export default class VerticalImageBox extends Component {
 
-    _ButtonPress() {
-
-    }
-
   render() {
       if (this.props.type == "link") {
         return (
-            <TouchableWithoutFeedback onPress={this._ButtonPress.bind(this)}>
+            <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate(this.props.Location)}>
                 <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[0.7, 0.5]}
                 style={{
                     height: 100,
@@ -29,7 +25,6 @@ export default class VerticalImageBox extends Component {
         )
       } else {
         return (
-            <TouchableWithoutFeedback onPress={this._ButtonPress.bind(this)}>
                 <LinearGradient colors={['#3C3C3C', '#303030']} start={[0, 0]} end={[0.7, 0.5]}
                 style={{
                     height: 100,
@@ -46,7 +41,6 @@ export default class VerticalImageBox extends Component {
                         resizeMethod={'scale'}
                     />
                 </LinearGradient>
-            </TouchableWithoutFeedback>
         )
       }
     
