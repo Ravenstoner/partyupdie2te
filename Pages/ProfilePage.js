@@ -5,6 +5,7 @@ import { Font } from 'expo';
 
 import FollowButton from '../Components/FollowButton'
 import VerticalImageBox from '../Components/VerticalImageBox'
+import SelectAge from '../Components/selectAge'
 
 // Animation values
 HEADER_MAX_HEIGHT = Dimensions.get('screen').height / 2;
@@ -137,11 +138,12 @@ export default class ProfilePage2 extends Component {
                             <VerticalImageBox navigation={this.props.navigation} Location={'ProfilePartyHistory'} type={'link'} ></VerticalImageBox>
                         </ScrollView>
                     </View>
+                    
+                    <SelectAge></SelectAge>
                         <View style={{height: 300}}>
 
                         </View>
                 </View>
-
             </View>
         </ScrollView>
       </View>
