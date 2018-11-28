@@ -125,7 +125,7 @@ export class CreateEventPage extends Component {
                             {
                             this.state.fontLoaded ? (
                             <Text 
-                                style={{color: '#F4F4F4', fontFamily: 'MoL', fontSize: 18 }}
+                                style={{color: '#F4F4F4', fontFamily: 'MoL', fontSize: 16 }}
                             >min. Age</Text>
                             ) : null
                             }
