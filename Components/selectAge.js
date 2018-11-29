@@ -20,14 +20,15 @@ export default class selectAge extends Component {
             scrollValue: 0,
             boldFontOfScrollThing: 1,
             ProFontWeight: 'MoR',
-            ageArr: [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
             schnappArr: [],
+            currentScroll: 0,
+            ageArr: ["", 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, ""],
             handleScroll: function(event) {
                 console.log(Math.round(event.nativeEvent.contentOffset.x));
-                    Vibration.vibrate(500);
-                    setTimeout(() => {
-                        
-                    }, 500);
+                this.currentScroll = Math.round(event.nativeEvent.contentOffset.x);
+                
+
+                 
             },
         }
     }
@@ -35,6 +36,22 @@ export default class selectAge extends Component {
     componentDidMount() {
         let a = this.state.ageArr.length;
         console.log(a);
+        let b = Math.round((SCROLL_LENGTH * this.state.ageArr.length) - (55 * 2) - (27.5 * 2));
+        console.log(b);  
+
+        let c = 25;
+        let e = [];
+
+        for (let help = 0; help < 22; help++) {
+            e.push(c);
+            
+            c = c + 55;
+        }
+        this.setState({
+            schnappArr: e
+        });
+
+        console.log("a: " + this.state.schnappArr.length);
     }
 
   render() {
