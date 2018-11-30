@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, TextInput, KeyboardAvoidingView } from 'react-native'
+import { Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, Slider, Animated, Dimensions, Switch } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import { Font } from 'expo'
 
-import SelectAge from '../Components/selectAge'
+SCREEN_WIDTH = Dimensions.get('screen').width;
 
 export class CreateEventPage extends Component {
 
@@ -16,7 +16,8 @@ export class CreateEventPage extends Component {
         super(props)
 
         this.state = {
-            fontLoaded: false
+            fontLoaded: false,
+            silderValue: 18,
         }
     }
 
@@ -30,7 +31,20 @@ export class CreateEventPage extends Component {
         this.setState({ fontLoaded: true });
     }
 
+    change(value) {
+        this.setState(() => {
+            let a = Math.round(value);
+            console.log(a);
+            this.setState({
+                silderValue: a
+            });
+        });
+    }
+
     render() {
+
+        const sliderNumber = (this.state.silderValue - 16) * (SCREEN_WIDTH / 50);
+
         return (
             <SafeAreaView style={{flex: 1, backgroundColor: '#272727'}}>
                 <View style={{marginTop: 32, marginBottom: 0, marginLeft: 32, marginRight: 32}}>
@@ -43,7 +57,7 @@ export class CreateEventPage extends Component {
                     }
                 </View>
                 <KeyboardAvoidingView style={{flex: 1}} behavior={'padding'}>
-                <View style={{ flex: 1, marginLeft: 32, marginRight: 32, justifyContent: 'space-around' }}>
+                <View style={{ flex: 1, marginLeft: 32, marginRight: 32, justifyContent: 'space-evenly' }}>
                     
                     <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4'}}>
                         {
@@ -90,7 +104,8 @@ export class CreateEventPage extends Component {
                         }
                     </View>
 
-                    <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4'}}>
+                    <View style={{ flexDirection: 'row'}}>
+                        <View style={{borderBottomWidth: 1, borderBottomColor: '#F4F4F4', flex: 1}}>
                         {
                         this.state.fontLoaded ? (
                         <TextInput
@@ -103,6 +118,10 @@ export class CreateEventPage extends Component {
                         />
                         ) : null
                         }
+                        </View>
+                        <View>
+                            <Switch></Switch>
+                        </View>
                     </View>
 
                     <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4'}}>
@@ -120,21 +139,19 @@ export class CreateEventPage extends Component {
                         }
                     </View>
 
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <View style={{justifyContent: 'center', flex: 1}}>
-                            {
-                            this.state.fontLoaded ? (
-                            <Text 
-                                style={{color: '#F4F4F4', fontFamily: 'MoL', fontSize: 16 }}
-                            >min. Age</Text>
-                            ) : null
-                            }
+                    <View>
+                        {
+                        this.state.fontLoaded ? (
+                        <Animated.Text style={{color: '#F4F4F4', fontFamily: 'MoL', fontSize: 18}}>
+                            min Age: {this.state.silderValue}
+                        </Animated.Text>
+                        ) : null
+                        }
+                        <View style={{flex: 1}}>
+                            <Slider value={18} thumbTintColor={'#f4f4f4'} minimumTrackTintColor={'#CF3B3B'} maximumTrackTintColor={'#F4F4F4'} onValueChange={this.change.bind(this)} minimumValue={16} maximumValue={50}></Slider>
                         </View>
-                        <View style={{alignItems: 'center', flex: 1}}>
-                            <SelectAge></SelectAge>
-                        </View>
-                        <View style={{flex: 1}}></View>
                     </View>
+
                     
                 </View>
                 </KeyboardAvoidingView>
