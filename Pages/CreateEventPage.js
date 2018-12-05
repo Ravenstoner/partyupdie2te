@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, PickerIOS, Slider, Animated, Dimensions, Switch, StatusBar } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import { Font } from 'expo'
+import { LinearGradient } from 'expo';
 
 SCREEN_WIDTH = Dimensions.get('screen').width;
 
@@ -43,7 +44,9 @@ export class CreateEventPage extends Component {
                 }
 
             },
-            onDescriptionTextChange: ""
+            onDescriptionTextChange: "",
+            buttonPressState: false,
+            buttonColor: ['#3C3C3C', '#303030']
         }
     }
 
@@ -67,6 +70,19 @@ export class CreateEventPage extends Component {
         });
     }
 
+    _onPressButton() {
+        if (this.state.buttonPressState) {
+            this.setState({
+                buttonPressState: false,
+                buttonColor: ['#E04040', '#962D2D']
+            });
+        } else {
+            this.setState({
+                buttonPressState: true,
+                buttonColor: ['#3C3C3C', '#303030']
+            });
+        }
+    }
     
 
     render() {
@@ -109,19 +125,28 @@ export class CreateEventPage extends Component {
                         }
                     </View>
 
-                    <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4'}}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center'}}>
+                        <View style={{ flex: 1, borderBottomWidth: 1, borderBottomColor: '#F4F4F4' }}>
                         {
-                        this.state.fontLoaded ? (
-                        <TextInput 
-                            keyboardType={'default'}
-                            style={{color: '#F4F4F4', fontFamily: 'MoL', fontSize: 18, paddingLeft: 1, paddingBottom: 4 }}
-                            placeholderTextColor={'rgba(244, 244, 244, .7)'}
-                            editable = {true}
-                            maxLength = {15}
-                            placeholder={'Location'}
-                        />
-                        ) : null
-                        }
+                            this.state.fontLoaded ? (
+                            <TextInput 
+                                keyboardType={'default'}
+                                style={{color: '#F4F4F4', fontFamily: 'MoL', fontSize: 18, paddingLeft: 1, paddingBottom: 4 }}
+                                placeholderTextColor={'rgba(244, 244, 244, .7)'}
+                                editable = {true}
+                                maxLength = {15}
+                                placeholder={'Location'}
+                            />
+                            ) : null
+                            }
+                        </View>
+                        <View style={{ marginLeft: 8 }}>
+                            <TouchableWithoutFeedback onPress={this._onPressButton.bind(this)}>
+                                <LinearGradient colors={this.state.buttonColor} start={[0, 0]} end={[1, 0.1]} style={{backgroundColor: '#333', padding: 14, borderRadius: 100}}>
+                                    <SvgUri width="30" height="30" source={require('../assets/location.svg')} />
+                                </LinearGradient>
+                            </TouchableWithoutFeedback>
+                        </View>
                     </View>
 
                     <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4'}}>
@@ -159,8 +184,8 @@ export class CreateEventPage extends Component {
                         </View>
                     </View>
 
-                    <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4', flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <View>
+                    <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4', flexDirection: 'row' }}>
+                        <View style={{flex: 1}}>
                         {
                         this.state.fontLoaded ? (
                         <TextInput
@@ -175,7 +200,7 @@ export class CreateEventPage extends Component {
                         ) : null
                         }
                         </View>
-                        <View style={{flexDirection: 'row', opacity: .5}}>
+                        <View style={{flexDirection: 'row', opacity: .5, marginLeft: 8}}>
                         {
                         this.state.fontLoaded ? (
                         <Animated.Text style={{ fontFamily: 'MoL', color: '#f4f4f4', fontSize: 11 }}>
