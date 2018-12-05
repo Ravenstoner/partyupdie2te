@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, Slider, Animated, Dimensions, Switch } from 'react-native'
+import { Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, PickerIOS, Slider, Animated, Dimensions, Switch, StatusBar } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import { Font } from 'expo'
 
@@ -18,6 +18,32 @@ export class CreateEventPage extends Component {
         this.state = {
             fontLoaded: false,
             silderValue: 18,
+            ticketPriceOpacity: new Animated.Value(.3),
+            ticketPriceState: false,
+            onTicketPriceOpacityChange: () => {
+
+                if (this.state.ticketPriceState) {
+                    Animated.timing(                    
+                        this.state.ticketPriceOpacity,
+                        {
+                        toValue: .3,
+                        duration: 300,
+                        }
+                    ).start();  
+                    this.setState({ticketPriceState: false});
+                } else {
+                    Animated.timing(                    
+                        this.state.ticketPriceOpacity,
+                        {
+                        toValue: 1,
+                        duration: 300,
+                        }
+                    ).start();  
+                    this.setState({ticketPriceState: true});
+                }
+
+            },
+            onDescriptionTextChange: ""
         }
     }
 
@@ -41,13 +67,17 @@ export class CreateEventPage extends Component {
         });
     }
 
+    
+
     render() {
 
         const sliderNumber = (this.state.silderValue - 16) * (SCREEN_WIDTH / 50);
 
         return (
             <SafeAreaView style={{flex: 1, backgroundColor: '#272727'}}>
-                <View style={{marginTop: 32, marginBottom: 0, marginLeft: 32, marginRight: 32}}>
+                {/* StatusBar light-content */}
+                <StatusBar barStyle="light-content" />
+                <View style={{marginTop: 16, marginBottom: 0, marginLeft: 32, marginRight: 32, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     {
                     this.state.fontLoaded ? (
                     <Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>
@@ -55,9 +85,14 @@ export class CreateEventPage extends Component {
                     </Text>
                     ) : null
                     }
+                    <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('ProfilePageMenu')} >
+                        <View>
+                            <SvgUri width="26" height="26" source={require('../assets/close.svg')} />
+                        </View>
+                    </TouchableWithoutFeedback>
                 </View>
                 <KeyboardAvoidingView style={{flex: 1}} behavior={'padding'}>
-                <View style={{ flex: 1, marginLeft: 32, marginRight: 32, justifyContent: 'space-evenly' }}>
+                <View style={{ flex: 1, marginLeft: 32, marginRight: 32, justifyContent: 'space-around' }}>
                     
                     <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4'}}>
                         {
@@ -105,26 +140,27 @@ export class CreateEventPage extends Component {
                     </View>
 
                     <View style={{ flexDirection: 'row'}}>
-                        <View style={{borderBottomWidth: 1, borderBottomColor: '#F4F4F4', flex: 1}}>
+                        <Animated.View style={{borderBottomWidth: 1, borderBottomColor: '#F4F4F4', flex: 1, opacity: this.state.ticketPriceOpacity}}>
                         {
                         this.state.fontLoaded ? (
                         <TextInput
                             keyboardType={'decimal-pad'}
                             style={{color: '#F4F4F4', fontFamily: 'MoL', fontSize: 18, paddingLeft: 1, paddingBottom: 4 }}
                             placeholderTextColor={'rgba(244, 244, 244, .7)'}
-                            editable = {true}
+                            editable = {this.state.ticketPriceState}
                             maxLength = {6}
                             placeholder={'Ticket Price'}
                         />
                         ) : null
                         }
-                        </View>
-                        <View>
-                            <Switch></Switch>
+                        </Animated.View>
+                        <View style={{marginLeft: 8}}>
+                            <Switch onValueChange={this.state.onTicketPriceOpacityChange} value={this.state.ticketPriceState}></Switch>
                         </View>
                     </View>
 
-                    <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4'}}>
+                    <View style={{ borderBottomWidth: 1, borderBottomColor: '#F4F4F4', flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <View>
                         {
                         this.state.fontLoaded ? (
                         <TextInput
@@ -134,9 +170,27 @@ export class CreateEventPage extends Component {
                             editable = {true}
                             maxLength = {100}
                             placeholder={'Description'}
+                            onChangeText={ (value) => this.setState({ onDescriptionTextChange: value }) }
                         />
                         ) : null
                         }
+                        </View>
+                        <View style={{flexDirection: 'row', opacity: .5}}>
+                        {
+                        this.state.fontLoaded ? (
+                        <Animated.Text style={{ fontFamily: 'MoL', color: '#f4f4f4', fontSize: 11 }}>
+                            {this.state.onDescriptionTextChange.length}
+                        </Animated.Text>
+                        ) : null
+                        }
+                        {
+                        this.state.fontLoaded ? (
+                        <Text style={{ fontFamily: 'MoL', color: '#f4f4f4', fontSize: 11 }}>
+                            / 100
+                        </Text>
+                        ) : null
+                        }
+                        </View>
                     </View>
 
                     <View>
@@ -148,13 +202,16 @@ export class CreateEventPage extends Component {
                         ) : null
                         }
                         <View style={{flex: 1}}>
-                            <Slider value={18} thumbTintColor={'#f4f4f4'} minimumTrackTintColor={'#CF3B3B'} maximumTrackTintColor={'#F4F4F4'} onValueChange={this.change.bind(this)} minimumValue={16} maximumValue={50}></Slider>
+                            <Slider value={18} thumbTintColor={'#f4f4f4'} minimumTrackTintColor={'#CF3B3B'} maximumTrackTintColor={'#F4F4F4'} onValueChange={this.change.bind(this)} minimumValue={16} maximumValue={22}></Slider>
                         </View>
                     </View>
 
                     
                 </View>
                 </KeyboardAvoidingView>
+                <View style={{ height: 50 }}>
+                
+                </View>
             </SafeAreaView>
         )
     }
