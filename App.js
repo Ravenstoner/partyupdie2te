@@ -7,6 +7,8 @@ import ProfilePage from './Pages/ProfilePage';
 import ProfilePartyHistory from './Pages/ProfilePartyHistory';
 import TestPage from './Pages/testPage';
 import CreateEventPage from './Pages/CreateEventPage';
+import IndexPage from './Pages/indexPage';
+import RegisterPage from './Pages/registerPage';
 
 const RootStack = createStackNavigator(
     {
@@ -14,10 +16,12 @@ const RootStack = createStackNavigator(
       ProfilePage: ProfilePage,
       ProfilePartyHistory: ProfilePartyHistory,
       TestPage: TestPage,
-      CreateEventPage: CreateEventPage
+      CreateEventPage: CreateEventPage,
+      IndexPage: IndexPage,
+      RegisterPage: RegisterPage,
     },
     {
-      initialRouteName: "CreateEventPage"
+      initialRouteName: "IndexPage"
     }
   );
 

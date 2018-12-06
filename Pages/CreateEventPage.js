@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, PickerIOS, Slider, Animated, Dimensions, Switch, StatusBar } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import { Font } from 'expo'
-import { LinearGradient } from 'expo';
+import { LinearGradient, Location, Permissions } from 'expo';
+import Geocoder from 'react-native-geocoder';
+
 
 SCREEN_WIDTH = Dimensions.get('screen').width;
 
@@ -46,11 +48,17 @@ export class CreateEventPage extends Component {
             },
             onDescriptionTextChange: "",
             buttonPressState: false,
-            buttonColor: ['#3C3C3C', '#303030']
+            buttonColor: ['#3C3C3C', '#303030'],
+            latitude: null,
+            longitude: null,
+            error: null
         }
     }
 
+    
+
     async componentDidMount() {
+        Permissions.askAsync(Permissions.LOCATION);
         await Font.loadAsync({
             'MoEB': require('../assets/fonts/Montserrat-ExtraBold.ttf'),
             'MoB': require('../assets/fonts/Montserrat-Bold.ttf'),
@@ -58,6 +66,7 @@ export class CreateEventPage extends Component {
         });
 
         this.setState({ fontLoaded: true });
+
     }
 
     change(value) {
@@ -97,7 +106,8 @@ export class CreateEventPage extends Component {
                     {
                     this.state.fontLoaded ? (
                     <Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>
-                        create Event
+                        {this.state.latitude}#
+                        {this.state.longitude}
                     </Text>
                     ) : null
                     }
@@ -195,6 +205,7 @@ export class CreateEventPage extends Component {
                             editable = {true}
                             maxLength = {100}
                             placeholder={'Description'}
+                            multiline={true}
                             onChangeText={ (value) => this.setState({ onDescriptionTextChange: value }) }
                         />
                         ) : null
