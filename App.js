@@ -9,6 +9,9 @@ import TestPage from './Pages/testPage';
 import CreateEventPage from './Pages/CreateEventPage';
 import IndexPage from './Pages/indexPage';
 import RegisterPage from './Pages/registerPage';
+import LoginPage from './Pages/loginPage';
+import MoodPage from './Pages/moodPage';
+import HoodPage from './Pages/hoodPage';
 
 const RootStack = createStackNavigator(
     {
@@ -19,9 +22,12 @@ const RootStack = createStackNavigator(
       CreateEventPage: CreateEventPage,
       IndexPage: IndexPage,
       RegisterPage: RegisterPage,
+      LoginPage: LoginPage,
+      MoodPage: MoodPage,
+      HoodPage: HoodPage
     },
     {
-      initialRouteName: "IndexPage"
+      initialRouteName: "HoodPage"
     }
   );
 

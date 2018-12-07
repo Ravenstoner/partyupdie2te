@@ -24,7 +24,7 @@ export class indexPage extends Component {
                 <View style={{ margin: 8 }}>
                     <ButtonUP navigation={this.props.navigation} Location={'RegisterPage'} gradientColor={['#E04040', '#962D2D']} text={'register'} ></ButtonUP>
                     <View style={{ height: 8  }}></View>
-                    <ButtonUP navigation={this.props.navigation} Location={'ProfilePartyHistory'} gradientColor={['#343434', '#292929']} text={'login'} ></ButtonUP>
+                    <ButtonUP navigation={this.props.navigation} Location={'LoginPage'} gradientColor={['#353535', '#292929']} text={'login'} ></ButtonUP>
                 </View>
             </SafeAreaView>
         </View>
