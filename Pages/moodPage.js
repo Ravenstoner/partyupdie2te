@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, SafeAreaView, ScrollView, Image, Dimensions } from 'react-native'
+import { Text, View, SafeAreaView, ScrollView, Dimensions, StatusBar } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import { LinearGradient, Font } from 'expo'
 
@@ -36,6 +36,8 @@ export class moodPage extends Component {
   render() {
     return (
         <View style={{backgroundColor: '#272727', flex: 1}}>
+            {/* StatusBar light-content */}
+            <StatusBar barStyle="light-content" />
             <SafeAreaView style={{flex: 1}}>
                 <View style={{ alignItems: 'center', justifyContent: 'flex-end', height: 50 }}>
                     { this.state.fontLoaded ? ( <Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>choose your STYLE</Text> ) : null }
@@ -72,7 +74,7 @@ export class moodPage extends Component {
                     </ScrollView>
                 </View>
                 <View style={{margin: 8}}>
-                    <ButtonUP navigation={this.props.navigation} Location={'IndexPage'} gradientColor={['#E04040', '#962D2D']} text={'ok'} ></ButtonUP>
+                    <ButtonUP type={1} navigation={this.props.navigation} Location={'IndexPage'} gradientColor={['#E04040', '#962D2D']} text={'ok'} ></ButtonUP>
                 </View>
             </SafeAreaView>
         </View>

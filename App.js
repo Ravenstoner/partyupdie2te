@@ -1,37 +1,49 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { createStackNavigator, createAppContainer, createSwitchNavigator, createBottomTabNavigator } from "react-navigation";
 
-import ProfilePageMenu from './Pages/ProfilePageMenu';
 import ProfilePage from './Pages/ProfilePage';
-import ProfilePartyHistory from './Pages/ProfilePartyHistory';
-import TestPage from './Pages/testPage';
 import CreateEventPage from './Pages/CreateEventPage';
-import IndexPage from './Pages/indexPage';
-import RegisterPage from './Pages/registerPage';
-import LoginPage from './Pages/loginPage';
-import MoodPage from './Pages/moodPage';
-import HoodPage from './Pages/hoodPage';
+import SearchPage from './Pages/searchPage';
 
-const RootStack = createStackNavigator(
-    {
-      ProfilePageMenu: ProfilePageMenu,
-      ProfilePage: ProfilePage,
-      ProfilePartyHistory: ProfilePartyHistory,
-      TestPage: TestPage,
-      CreateEventPage: CreateEventPage,
-      IndexPage: IndexPage,
-      RegisterPage: RegisterPage,
-      LoginPage: LoginPage,
-      MoodPage: MoodPage,
-      HoodPage: HoodPage
-    },
-    {
-      initialRouteName: "HoodPage"
+const Tab = createBottomTabNavigator(
+  {
+    SearchPage: SearchPage,
+    CreateEventPage: CreateEventPage,
+    ProfilePage: ProfilePage
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'SearchPage') {
+          iconName = `ios-search`;
+        } else if (routeName === 'CreateEventPage') {
+          iconName = `ios-add${!focused ? '' : '-circle'}`;
+        } else if (routeName === 'ProfilePage') {
+          iconName = `ios-person`;
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return <Ionicons name={iconName} size={30} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: '#F4F4F4',
+      style: {
+        backgroundColor: '#2F2F2F',
+      },
+      activeBackgroundColor: '#CF3B3B',
+      showLabel: false,
+      showIcon: true
     }
-  );
+  }
+);
 
-export default createAppContainer(RootStack);
+export default createAppContainer(Tab);
   
   
   

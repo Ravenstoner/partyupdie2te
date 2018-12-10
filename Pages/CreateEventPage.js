@@ -111,7 +111,7 @@ export class CreateEventPage extends Component {
                     </Text>
                     ) : null
                     }
-                    <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('ProfilePageMenu')} >
+                    <TouchableWithoutFeedback onPress={() => this.props.navigation.goBack()} >
                         <View>
                             <SvgUri width="26" height="26" source={require('../assets/close.svg')} />
                         </View>

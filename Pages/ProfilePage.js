@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Text, View, SafeAreaView, StatusBar, Dimensions, Image, ScrollView, Animated, TouchableWithoutFeedback, Easing } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import { Font } from 'expo';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import FollowButton from '../Components/FollowButton'
 import VerticalImageBox from '../Components/VerticalImageBox'
-import SelectAge from '../Components/selectAge'
+import ProfilePageMenu from '../Pages/ProfilePageMenu'
 
 // Animation values
 HEADER_MAX_HEIGHT = Dimensions.get('screen').height / 2;
@@ -14,7 +15,7 @@ HEADER_MIN_HEIGHT = Dimensions.get('screen').height / 4;
 SCREEN_HEIGHT = Dimensions.get('screen').height;
 SCREEN_WIDTH = Dimensions.get('screen').width;
 
-export default class ProfilePage2 extends Component {
+class ProfilePage extends Component {
 
 // hide React-Navigation-Bar
     static navigationOptions = {
@@ -70,8 +71,8 @@ export default class ProfilePage2 extends Component {
         )}>
 
             <View style={{height: HEADER_MAX_HEIGHT}}>
-                <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('ProfilePageMenu')} >
-                    <View style={{position: 'absolute', top: 35, right: 16}}>
+                <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Settings')} >
+                    <View style={{position: 'absolute', top: 45, right: 16}}>
                         <SvgUri width="26" height="26" source={require('../assets/menu.svg')} />
                     </View>
                 </TouchableWithoutFeedback>
@@ -138,8 +139,7 @@ export default class ProfilePage2 extends Component {
                             <VerticalImageBox navigation={this.props.navigation} Location={'ProfilePartyHistory'} type={'link'} ></VerticalImageBox>
                         </ScrollView>
                     </View>
-                    
-                    <SelectAge></SelectAge>
+                
                         <View style={{height: 300}}>
 
                         </View>
@@ -150,3 +150,10 @@ export default class ProfilePage2 extends Component {
     )
   }
 }
+
+const StackNavigator = createStackNavigator({
+    Home: ProfilePage,
+    Settings: ProfilePageMenu,
+});
+
+export default createAppContainer(StackNavigator);

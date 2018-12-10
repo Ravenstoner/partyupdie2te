@@ -28,7 +28,7 @@ export default class TextInputUP extends Component {
             this.state.fontLoaded ? (
             <TextInput 
                 keyboardType={this.props.keyboardType}
-                style={{color: '#F4F4F4', fontFamily: 'MoL', fontSize: 18, paddingLeft: 1, paddingBottom: 4 }}
+                style={{color: '#F4F4F4', fontFamily: 'MoL', fontSize: 18, paddingLeft: 4, paddingBottom: 4 }}
                 placeholderTextColor={'rgba(244, 244, 244, .7)'}
                 editable = {true}
                 maxLength = {this.props.maxLength}
@@ -36,6 +36,7 @@ export default class TextInputUP extends Component {
                 textContentType={this.props.textContentType}
                 keyboardAppearance={this.props.keyboardAppearance}
                 secureTextEntry={this.props.secureTextEntry}
+                selectionColor={'#CF3B3B'}
             />
             ) : null
             }

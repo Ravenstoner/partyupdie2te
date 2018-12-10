@@ -43,8 +43,8 @@ export class loginPage extends Component {
                     <View style={{ paddingLeft: 64, paddingRight: 64, flex: 1 }}>
                         <KeyboardAvoidingView style={{ flex: 1, justifyContent: 'space-around' }} behavior={'padding'} enabled keyboardVerticalOffset={90}>
                             <View style={{height: 10}}></View>
-                            <TextInputUP keyboardType={'default'} placeholder={'Displayname'} keyboardAppearance={'dark'} textContentType={'nickname'} maxLength={15}></TextInputUP>
-                            <TextInputUP keyboardType={'default'} placeholder={'Password'} secureTextEntry={true} keyboardAppearance={'dark'} textContentType={'password'}></TextInputUP>
+                                <TextInputUP keyboardType={'default'} placeholder={'Displayname'} keyboardAppearance={'dark'} textContentType={'nickname'} maxLength={15}></TextInputUP>
+                                <TextInputUP keyboardType={'default'} placeholder={'Password'} secureTextEntry={true} keyboardAppearance={'dark'} textContentType={'password'}></TextInputUP>
                             <View style={{height: 100}}></View>
                         </KeyboardAvoidingView>
                     </View>

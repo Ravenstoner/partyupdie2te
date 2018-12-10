@@ -18,7 +18,7 @@ export default class moodButton extends Component {
                         this.state.checkOpay,
                         {
                         toValue: 0,
-                        duration: 100,
+                        duration: 200,
                         }
                     ).start();  
                     this.setState({checkStat: false});
@@ -27,7 +27,7 @@ export default class moodButton extends Component {
                         this.state.checkOpay,
                         {
                         toValue: 1,
-                        duration: 100,
+                        duration: 200,
                         }
                     ).start();  
                     this.setState({checkStat: true});
