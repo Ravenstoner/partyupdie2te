@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, SafeAreaView, StatusBar, Dimensions, Image, ScrollView, Animated, TouchableWithoutFeedback, Easing } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import { Font } from 'expo';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import FollowButton from '../Components/FollowButton'
@@ -73,7 +74,7 @@ class ProfilePage extends Component {
             <View style={{height: HEADER_MAX_HEIGHT}}>
                 <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Settings')} >
                     <View style={{position: 'absolute', top: 45, right: 16}}>
-                        <SvgUri width="26" height="26" source={require('../assets/menu.svg')} />
+                        <Ionicons name={'ios-menu'} size={30} color={'#F4F4F4'} />
                     </View>
                 </TouchableWithoutFeedback>
             </View>            

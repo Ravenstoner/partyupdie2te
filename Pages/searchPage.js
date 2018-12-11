@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, SafeAreaView, ScrollView, Image, Dimensions, StatusBar } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { LinearGradient, Font } from 'expo'
 
 import TextInputUP from '../Components/TextInputUP'
@@ -35,16 +36,9 @@ export class searchPage extends Component {
             {/* StatusBar light-content */}
             <StatusBar barStyle="light-content" />
             <SafeAreaView style={{flex: 1}}>
-                <View style={{padding: 16, flexDirection: 'row'}}>
-                    <View style={{flex: 1}}>
-                        <TextInputUP keyboardType={'default'} placeholder={'search'} keyboardAppearance={'dark'} maxLength={15}></TextInputUP>
-                    </View>
-                    <View style={{paddingLeft: 4, paddingRight: 4}}>
-                        <SvgUri width="28" height="28" source={require('../assets/search.svg')} />
-                    </View>
-                </View>
+                <TextInputUP type={'search'}></TextInputUP>
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <SvgUri width="128" height="128" source={require('../assets/search.svg')} />
+                    <Ionicons name={'ios-search'} size={128} color={'#F4F4F4'} />
                     { this.state.fontLoaded ? ( <Text style={{ fontFamily: 'MoL', color: '#f4f4f4', fontSize: 18 }}>Search for an Event</Text> ) : null }
                 </View>
                 <View style={{height: 50}}></View>

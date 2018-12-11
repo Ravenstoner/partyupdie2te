@@ -3,6 +3,7 @@ import { Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWit
 import SvgUri from 'react-native-svg-uri'
 import { Font } from 'expo'
 import { LinearGradient, Location, Permissions } from 'expo';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Geocoder from 'react-native-geocoder';
 
 
@@ -106,16 +107,10 @@ export class CreateEventPage extends Component {
                     {
                     this.state.fontLoaded ? (
                     <Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>
-                        {this.state.latitude}#
-                        {this.state.longitude}
+                        create Event
                     </Text>
                     ) : null
                     }
-                    <TouchableWithoutFeedback onPress={() => this.props.navigation.goBack()} >
-                        <View>
-                            <SvgUri width="26" height="26" source={require('../assets/close.svg')} />
-                        </View>
-                    </TouchableWithoutFeedback>
                 </View>
                 <KeyboardAvoidingView style={{flex: 1}} behavior={'padding'}>
                 <View style={{ flex: 1, marginLeft: 32, marginRight: 32, justifyContent: 'space-around' }}>
@@ -152,8 +147,8 @@ export class CreateEventPage extends Component {
                         </View>
                         <View style={{ marginLeft: 8 }}>
                             <TouchableWithoutFeedback onPress={this._onPressButton.bind(this)}>
-                                <LinearGradient colors={this.state.buttonColor} start={[0, 0]} end={[1, 0.1]} style={{backgroundColor: '#333', padding: 14, borderRadius: 100}}>
-                                    <SvgUri width="30" height="30" source={require('../assets/location.svg')} />
+                                <LinearGradient colors={this.state.buttonColor} start={[0, 0]} end={[1, 0.1]} style={{backgroundColor: '#333', width: 55, height: 55, borderRadius: 100, justifyContent: 'center', alignItems: 'center'}}>
+                                    <Ionicons name={'ios-search'} size={28} color={'#F4F4F4'} />
                                 </LinearGradient>
                             </TouchableWithoutFeedback>
                         </View>

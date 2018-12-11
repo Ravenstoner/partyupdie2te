@@ -6,11 +6,13 @@ import { createStackNavigator, createAppContainer, createSwitchNavigator, create
 import ProfilePage from './Pages/ProfilePage';
 import CreateEventPage from './Pages/CreateEventPage';
 import SearchPage from './Pages/searchPage';
+import ChatPage from './Pages/chatPage';
 
 const Tab = createBottomTabNavigator(
   {
     SearchPage: SearchPage,
     CreateEventPage: CreateEventPage,
+    ChatPage: ChatPage,
     ProfilePage: ProfilePage
   },
   {
@@ -24,6 +26,8 @@ const Tab = createBottomTabNavigator(
           iconName = `ios-add${!focused ? '' : '-circle'}`;
         } else if (routeName === 'ProfilePage') {
           iconName = `ios-person`;
+        } else if (routeName === 'ChatPage') {
+          iconName = `ios-mail`;
         }
 
         // You can return any component that you like here! We usually use an
