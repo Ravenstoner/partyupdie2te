@@ -44,9 +44,12 @@ export class chatPage extends Component {
                     { this.state.fontLoaded ? (<Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>Chat</Text>) : null }
                 </View>
                 <View style={{flex: 1}}>
-                    <ScrollView>
-                        <ChatRow></ChatRow>
-                        <ChatRow></ChatRow>
+                    <ScrollView scrollEventThrottle={16}>
+                        <View style={{height: 16}}></View>
+                        <ChatRow username={'John Doe'} profilePic={require('../assets/202.jpg')} text={'Lorem ipsum dolor sit amet.'} number={'12'}></ChatRow>
+                        <ChatRow username={'Johanna Doe'} profilePic={require('../assets/201.jpg')} text={'Lorem !'} number={''}></ChatRow>
+                        <ChatRow username={'Frank Doe'} profilePic={require('../assets/09.jpg')} text={'Lorem ipsum dolor sit amet, consetetur sadipscing.'} number={'6'}></ChatRow>
+                        <ChatRow username={'Luke Doe'} profilePic={require('../assets/juju.jpg')} text={'Lorem ipsum dolor sit amet, sadipscing elitr.'} number={'3'}></ChatRow>
                     </ScrollView>
                 </View>
             </SafeAreaView>

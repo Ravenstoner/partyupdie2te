@@ -8,6 +8,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import FollowButton from '../Components/FollowButton'
 import VerticalImageBox from '../Components/VerticalImageBox'
 import ProfilePageMenu from '../Pages/ProfilePageMenu'
+import ProfilePartyHistory from '../Pages/ProfilePartyHistory'
 
 // Animation values
 HEADER_MAX_HEIGHT = Dimensions.get('screen').height / 2;
@@ -155,6 +156,7 @@ class ProfilePage extends Component {
 const StackNavigator = createStackNavigator({
     Home: ProfilePage,
     Settings: ProfilePageMenu,
+    ProfilePartyHistory: ProfilePartyHistory,
 });
 
 export default createAppContainer(StackNavigator);

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Text, View, SafeAreaView, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, PickerIOS, Slider, Animated, Dimensions, Switch, StatusBar } from 'react-native'
 import SvgUri from 'react-native-svg-uri'
 import { Font } from 'expo'
-import { LinearGradient, Location, Permissions } from 'expo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { LinearGradient, Location, Permissions } from 'expo';
 import Geocoder from 'react-native-geocoder';
 
 
