@@ -47,9 +47,7 @@ export class ProfilePartyHistory extends Component {
 
             <ScrollView>
                 <PartyHistoryPicBox layout={1}></PartyHistoryPicBox>
-                <PartyHistoryPicBox layout={2}></PartyHistoryPicBox>
                 <PartyHistoryPicBox layout={1}></PartyHistoryPicBox>
-                <PartyHistoryPicBox layout={2}></PartyHistoryPicBox>
             </ScrollView>
 
         </SafeAreaView>

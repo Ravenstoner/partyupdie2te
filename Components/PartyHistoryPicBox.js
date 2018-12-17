@@ -29,13 +29,13 @@ export class PartyHistoryPicBox extends Component {
             return (
                 <View style={{flexDirection: 'row'}}>
                     <View style={{height: SCREEN_WIDTH / 3 - 8, width: SCREEN_WIDTH / 3 - 8, margin: 4, borderRadius: 15, overflow: 'hidden' }}>
-                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/MoB4.jpg')} />
+                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/61.jpg')} />
                     </View>
                     <View style={{height: SCREEN_WIDTH / 3 - 8, width: SCREEN_WIDTH / 3 - 8, margin: 4, borderRadius: 15, overflow: 'hidden' }}>
-                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/MoB5.jpg')} />
+                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/59.jpg')} />
                     </View>
                     <View style={{height: SCREEN_WIDTH / 3 - 8, width: SCREEN_WIDTH / 3 - 8, margin: 4, borderRadius: 15, overflow: 'hidden' }}>
-                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/MoB6.jpg')} />
+                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/13.jpg')} />
                     </View>
                 </View>
             )
