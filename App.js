@@ -7,9 +7,11 @@ import ProfilePage from './Pages/ProfilePage';
 import CreateEventPage from './Pages/CreateEventPage';
 import SearchPage from './Pages/searchPage';
 import ChatPage from './Pages/chatPage';
+import FeedPage from './Pages/feedPage';
 
 const Tab = createBottomTabNavigator(
   {
+    FeedPage: FeedPage,
     SearchPage: SearchPage,
     CreateEventPage: CreateEventPage,
     ChatPage: ChatPage,
@@ -28,6 +30,8 @@ const Tab = createBottomTabNavigator(
           iconName = `ios-person`;
         } else if (routeName === 'ChatPage') {
           iconName = `ios-mail`;
+        } else if (routeName === 'FeedPage') {
+          iconName = `ios-home`;
         }
 
         // You can return any component that you like here! We usually use an

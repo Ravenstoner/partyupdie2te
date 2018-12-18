@@ -29,13 +29,13 @@ export class PartyHistoryPicBox extends Component {
             return (
                 <View style={{flexDirection: 'row'}}>
                     <View style={{height: SCREEN_WIDTH / 3 - 8, width: SCREEN_WIDTH / 3 - 8, margin: 4, borderRadius: 15, overflow: 'hidden' }}>
-                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/61.jpg')} />
+                        <Image style={{flex: 1, width: undefined, height: undefined}} source={this.props.pic1} />
                     </View>
                     <View style={{height: SCREEN_WIDTH / 3 - 8, width: SCREEN_WIDTH / 3 - 8, margin: 4, borderRadius: 15, overflow: 'hidden' }}>
-                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/59.jpg')} />
+                        <Image style={{flex: 1, width: undefined, height: undefined}} source={this.props.pic2} />
                     </View>
                     <View style={{height: SCREEN_WIDTH / 3 - 8, width: SCREEN_WIDTH / 3 - 8, margin: 4, borderRadius: 15, overflow: 'hidden' }}>
-                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/13.jpg')} />
+                        <Image style={{flex: 1, width: undefined, height: undefined}} source={this.props.pic3} />
                     </View>
                 </View>
             )
@@ -44,14 +44,14 @@ export class PartyHistoryPicBox extends Component {
             return (
                 <View style={{flexDirection: 'row'}}>
                     <View style={{height: ((SCREEN_WIDTH / 3) * 2) - 8, width: ((SCREEN_WIDTH / 3) * 2) - 8, margin: 4, borderRadius: 15, overflow: 'hidden' }}>
-                        <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/200.jpg')} />
+                        <Image style={{flex: 1, width: undefined, height: undefined}} source={this.props.pic1} />
                     </View>
                     <View style={{flexDirection: 'column'}}>
                         <View style={{height: SCREEN_WIDTH / 3 - 8, width: SCREEN_WIDTH / 3 - 8, margin: 4, borderRadius: 15, overflow: 'hidden' }}>
-                            <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/201.jpg')} />
+                            <Image style={{flex: 1, width: undefined, height: undefined}} source={this.props.pic2} />
                         </View>
                         <View style={{height: SCREEN_WIDTH / 3 - 8, width: SCREEN_WIDTH / 3 - 8, margin: 4, borderRadius: 15, overflow: 'hidden' }}>
-                            <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/202.jpg')} />
+                            <Image style={{flex: 1, width: undefined, height: undefined}} source={this.props.pic3} />
                         </View>
                     </View>
                 </View>

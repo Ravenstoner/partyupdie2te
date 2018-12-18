@@ -141,10 +141,6 @@ class ProfilePage extends Component {
                             <VerticalImageBox navigation={this.props.navigation} Location={'ProfilePartyHistory'} type={'link'} ></VerticalImageBox>
                         </ScrollView>
                     </View>
-                
-                        <View style={{height: 300}}>
-
-                        </View>
                 </View>
             </View>
         </ScrollView>

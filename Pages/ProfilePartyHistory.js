@@ -46,8 +46,11 @@ export class ProfilePartyHistory extends Component {
             <StatusBar barStyle="light-content" />
 
             <ScrollView>
-                <PartyHistoryPicBox layout={1}></PartyHistoryPicBox>
-                <PartyHistoryPicBox layout={1}></PartyHistoryPicBox>
+                {
+                    
+                }
+                <PartyHistoryPicBox layout={1} pic1={require('../assets/201.jpg')} pic2={require('../assets/201.jpg')} pic3={require('../assets/201.jpg')}></PartyHistoryPicBox>
+                <PartyHistoryPicBox layout={2} pic1={require('../assets/201.jpg')} pic2={require('../assets/201.jpg')} pic3={require('../assets/201.jpg')}></PartyHistoryPicBox>
             </ScrollView>
 
         </SafeAreaView>
