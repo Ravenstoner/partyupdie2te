@@ -7,7 +7,7 @@ import ProfilePage from './Pages/ProfilePage';
 import CreateEventPage from './Pages/CreateEventPage';
 import SearchPage from './Pages/searchPage';
 import ChatPage from './Pages/chatPage';
-import FeedPage from './Pages/feedPage';
+import FeedPage from './Pages/EventPage';
 
 const Tab = createBottomTabNavigator(
   {

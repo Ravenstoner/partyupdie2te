@@ -75,7 +75,10 @@ class ProfilePage extends Component {
         <StatusBar barStyle="light-content" />
         {/* Profile Pic */}
         <Animated.View style={{height: headerHight, opacity: headerOpacity, width: Dimensions.get('screen').width, position: 'absolute', overflow: 'hidden', borderBottomLeftRadius: 25, borderBottomRightRadius: 25, backgroundColor: '#272727' }}>
-            <Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/juju.jpg')} />
+            <Animated.Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/202.jpg')} />
+            <Animated.View style={{position: 'absolute', bottom: 8, left: 8, right: 0, height: '50%', justifyContent: 'flex-end'}}>
+                { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>Jägermeister</Text>) : null }
+            </Animated.View>
         </Animated.View>
 
         {/* ScrollView */}
@@ -85,38 +88,29 @@ class ProfilePage extends Component {
 
             <View style={{height: HEADER_MAX_HEIGHT}}>
                 <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Settings')} >
-                    <View style={{position: 'absolute', top: 45, right: 16}}>
-                        <Ionicons name={'ios-menu'} size={30} color={'#F4F4F4'} />
-                    </View>
+                    <SafeAreaView style={{position: 'absolute', top: 16, right: 18}}>
+                        <Ionicons name={'ios-close'} size={32} color={'#F4F4F4'} />
+                    </SafeAreaView>
                 </TouchableWithoutFeedback>
             </View>            
 
             {/* Bottom Content */}
             <View style={{marginLeft: 8, marginRight: 8, marginTop: 8}}>
                 {/* Name & follow Btn */}
-                <View style={{flexDirection: 'row'}}>
-                    <View>
-                        {
-                            this.state.fontLoaded ? (
-                            <Text style={{marginLeft: 8, fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>
-                                Johanna Doe
-                            </Text>
-                            ) : null
-                        }
+                <View style={{flexDirection: 'row', marginBottom: 8}}>
+                    <View style={{alignItems: 'center', flexDirection: 'row', flex: 1, justifyContent: 'space-around'}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Ionicons name={'ios-heart'} size={24} color={'#F4F4F4'} />
+                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 18 }}>1.234</Text>) : null }
+                        </View>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                            <Ionicons name={'ios-chatboxes'} size={24} color={'#F4F4F4'} />
+                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 18 }}>45</Text>) : null }
+                        </View>
                     </View>
                     <View style={{flex: 1, marginLeft: 8}}>
-                        <FollowButton text1={'follow'} text2={'following'}></FollowButton>
+                        <FollowButton text1={'join party'} text2={'joined'}></FollowButton>
                     </View>
-                </View>
-
-                <View>
-                    {
-                        this.state.fontLoaded ? (
-                        <Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 11, opacity: .5, marginTop: 8, marginBottom: 8 }}>
-                            @joDoe
-                        </Text>
-                        ) : null
-                    }
                 </View>
 
                 <View>
@@ -131,27 +125,6 @@ class ProfilePage extends Component {
 
                 <View>
                     <SvgUri style={{marginTop: 8, marginBottom: 8}} width="undefined" height="10" source={require('../assets/Line.svg')} />
-                </View>
-
-                <View>
-                    <View>
-                        {
-                            this.state.fontLoaded ? (
-                            <Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 16, paddingBottom: 8}}>
-                                Party
-                            </Text>
-                            ) : null
-                        }
-                    </View>
-                    <View style={{flexDirection: 'row'}}>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <VerticalImageBox image={require('../assets/MoB4.jpg')}></VerticalImageBox>
-                            <VerticalImageBox image={require('../assets/MoB5.jpg')}></VerticalImageBox>
-                            <VerticalImageBox image={require('../assets/MoB6.jpg')}></VerticalImageBox>
-                            <VerticalImageBox image={require('../assets/MoB7.jpg')}></VerticalImageBox>
-                            <VerticalImageBox navigation={this.props.navigation} Location={'ProfilePartyHistory'} type={'link'} ></VerticalImageBox>
-                        </ScrollView>
-                    </View>
                 </View>
             </View>
         </ScrollView>

@@ -40,12 +40,16 @@ export class chatPage extends Component {
             <SafeAreaView style={{flex: 1, backgroundColor: '#272727'}}>
                 {/* StatusBar light-content */}
                 <StatusBar barStyle="light-content" />
-                <View style={{marginTop: 16, marginBottom: 0, marginLeft: 32, marginRight: 32, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <View style={{marginTop: 16, marginBottom: 0, marginLeft: 16, marginRight: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     { this.state.fontLoaded ? (<Text style={{ fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>Chat</Text>) : null }
                 </View>
                 <View style={{flex: 1}}>
                     <ScrollView scrollEventThrottle={16}>
                         <View style={{height: 16}}></View>
+                        <ChatRow username={'John Doe'} profilePic={require('../assets/202.jpg')} text={'Lorem ipsum dolor sit amet.'} number={'12'}></ChatRow>
+                        <ChatRow username={'Johanna Doe'} profilePic={require('../assets/201.jpg')} text={'Lorem !'} number={''}></ChatRow>
+                        <ChatRow username={'Frank Doe'} profilePic={require('../assets/09.jpg')} text={'Lorem ipsum dolor sit amet, consetetur sadipscing.'} number={'6'}></ChatRow>
+                        <ChatRow username={'Luke Doe'} profilePic={require('../assets/juju.jpg')} text={'Lorem ipsum dolor sit amet, sadipscing elitr.'} number={'3'}></ChatRow>
                         <ChatRow username={'John Doe'} profilePic={require('../assets/202.jpg')} text={'Lorem ipsum dolor sit amet.'} number={'12'}></ChatRow>
                         <ChatRow username={'Johanna Doe'} profilePic={require('../assets/201.jpg')} text={'Lorem !'} number={''}></ChatRow>
                         <ChatRow username={'Frank Doe'} profilePic={require('../assets/09.jpg')} text={'Lorem ipsum dolor sit amet, consetetur sadipscing.'} number={'6'}></ChatRow>
