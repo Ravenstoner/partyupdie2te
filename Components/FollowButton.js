@@ -7,7 +7,7 @@ export default class followButton extends Component {
 
     state = {
         fontLoaded: false,
-        buttonPressState: false,
+        buttonPressState: true,
         buttonColor: ['#E04040', '#962D2D'],
         buttonFont: 'MoEB'
     };
@@ -18,7 +18,22 @@ export default class followButton extends Component {
             'MoL': require('../assets/fonts/Montserrat-Light.ttf'),
         });
 
+        this.setState({ buttonPressState: this.props.JoinState });
+
         this.setState({ fontLoaded: true });
+        if (this.state.buttonPressState) {
+            this.setState({
+                buttonPressState: false,
+                buttonColor: ['#E04040', '#962D2D'],
+                buttonFont: 'MoEB'
+            });
+        } else {
+            this.setState({
+                buttonPressState: true,
+                buttonColor: ['#3C3C3C', '#303030'],
+                buttonFont: 'MoL'
+            });
+        }
     }
 
     _onPressButton() {

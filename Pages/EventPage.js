@@ -17,23 +17,23 @@ HEADER_MIN_HEIGHT = Dimensions.get('screen').height / 4;
 SCREEN_HEIGHT = Dimensions.get('screen').height;
 SCREEN_WIDTH = Dimensions.get('screen').width;
 
-class ProfilePage extends Component {
+class EventPage extends Component {
 
-// hide React-Navigation-Bar
+    // hide React-Navigation-Bar
     static navigationOptions = {
-        title: 'Profile',
+        title: 'Feed',
         headerStyle: {
-          backgroundColor: '#222',
-          elevation: 0,
-          shadowOpacity: 0,
-          borderBottomWidth: 0,
+            backgroundColor: '#222',
+            elevation: 0,
+            shadowOpacity: 0,
+            borderBottomWidth: 0,
         },
         headerTintColor: '#F4F4F4',
         headerTitleStyle: {
-          fontWeight: 'bold',
+            fontWeight: 'bold',
         },    
         header: null
-      };
+    };
 
     constructor(props) {
         super(props)
@@ -77,7 +77,7 @@ class ProfilePage extends Component {
         <Animated.View style={{height: headerHight, opacity: headerOpacity, width: Dimensions.get('screen').width, position: 'absolute', overflow: 'hidden', borderBottomLeftRadius: 25, borderBottomRightRadius: 25, backgroundColor: '#272727' }}>
             <Animated.Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/202.jpg')} />
             <Animated.View style={{position: 'absolute', bottom: 8, left: 8, right: 0, height: '50%', justifyContent: 'flex-end'}}>
-                { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>Jägermeister</Text>) : null }
+                { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>kjh</Text>) : null }
             </Animated.View>
         </Animated.View>
 
@@ -87,7 +87,7 @@ class ProfilePage extends Component {
         )}>
 
             <View style={{height: HEADER_MAX_HEIGHT}}>
-                <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('Settings')} >
+                <TouchableWithoutFeedback onPress={() => this.props.navigation.goBack()} >
                     <SafeAreaView style={{position: 'absolute', top: 16, right: 18}}>
                         <Ionicons name={'ios-close'} size={32} color={'#F4F4F4'} />
                     </SafeAreaView>
@@ -109,7 +109,7 @@ class ProfilePage extends Component {
                         </View>
                     </View>
                     <View style={{flex: 1, marginLeft: 8}}>
-                        <FollowButton text1={'join party'} text2={'joined'}></FollowButton>
+                        <FollowButton text1={'join party'} text2={'joined'} JoinState={this.props.JoinState}></FollowButton>
                     </View>
                 </View>
 
@@ -117,15 +117,49 @@ class ProfilePage extends Component {
                     {
                         this.state.fontLoaded ? (
                         <Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16, opacity: .9 }}>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et. Sed diam nonumy eirmod tempor invidunt ut labore et.
                         </Text>
                         ) : null
                     }
                 </View>
 
-                <View>
-                    <SvgUri style={{marginTop: 8, marginBottom: 8}} width="undefined" height="10" source={require('../assets/Line.svg')} />
+                <View style={{justifyContent: 'center', marginLeft: 8, marginRight: 8}}>
+                    <SvgUri style={{marginTop: 8, marginBottom: 8}} width="undefined" height="9" source={require('../assets/Line.svg')} />
                 </View>
+
+                <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Ionicons name={'logo-euro'} size={24} color={'#F4F4F4'} />
+                        { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>7,99 €</Text>) : null }
+                    </View>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Ionicons name={'ios-people'} size={24} color={'#F4F4F4'} />
+                        { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>1.540</Text>) : null }
+                    </View>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Ionicons name={'ios-beer'} size={24} color={'#F4F4F4'} />
+                        { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>18</Text>) : null }
+                    </View>
+                </View>
+
+                <View style={{justifyContent: 'center', marginLeft: 8, marginRight: 8}}>
+                    <SvgUri style={{marginTop: 8, marginBottom: 8}} width="undefined" height="9" source={require('../assets/Line.svg')} />
+                </View>
+
+                <View style={{marginLeft: 8, marginRight: 8}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                        <View style={{height: 100, width: 100, overflow: 'hidden', borderRadius: 100}}>
+                            <Animated.Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/61.jpg')} />
+                        </View>
+                        <View style={{justifyContent: 'center', marginLeft: 4}}>
+                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoB', color: '#f4f4f4', fontSize: 16 }}>@bollwerk_graz</Text>) : null }
+                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>Bollwerk Graz</Text>) : null }
+                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>Straße blabla 25</Text>) : null }
+                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>8000 Graz</Text>) : null }
+                        </View>
+                    </View>
+                </View>
+                <View style={{height: 16}}></View>
             </View>
         </ScrollView>
       </View>
@@ -133,10 +167,4 @@ class ProfilePage extends Component {
   }
 }
 
-const StackNavigator = createStackNavigator({
-    Home: ProfilePage,
-    Settings: ProfilePageMenu,
-    ProfilePartyHistory: ProfilePartyHistory,
-});
-
-export default createAppContainer(StackNavigator);
+export default EventPage
