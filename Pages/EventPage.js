@@ -5,7 +5,7 @@ import { Font } from 'expo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import FollowButton from '../Components/FollowButton'
+import FollowButton from '../Components/FollowBu'
 import VerticalImageBox from '../Components/VerticalImageBox'
 import ProfilePageMenu from '../Pages/ProfilePageMenu'
 import ProfilePartyHistory from '../Pages/ProfilePartyHistory'
@@ -40,9 +40,11 @@ class EventPage extends Component {
 
         this.state = {
             scrollY: new Animated.Value(0),
-            fontLoaded: false
+            fontLoaded: false,
+            data: []
         }
     }
+
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -51,6 +53,17 @@ class EventPage extends Component {
             'MoL': require('../assets/fonts/Montserrat-Light.ttf'),
         });
 
+        try {
+            const { params } = this.props.navigation.state;
+            await fetch('https://jsonplaceholder.typicode.com/users/' + params.id + '')
+                .then(response => response.json())
+                .then(data => this.setState({ data }));
+              
+        }
+        catch(e) {
+            console.log(e)
+        }     
+
         this.setState({ fontLoaded: true });
     }
 
@@ -58,8 +71,7 @@ class EventPage extends Component {
 
     const headerHight = this.state.scrollY.interpolate({
         inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-        outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
-        extrapolate: 'clamp'
+        outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT]
     })
 
     const headerOpacity = this.state.scrollY.interpolate({
@@ -77,7 +89,7 @@ class EventPage extends Component {
         <Animated.View style={{height: headerHight, opacity: headerOpacity, width: Dimensions.get('screen').width, position: 'absolute', overflow: 'hidden', borderBottomLeftRadius: 25, borderBottomRightRadius: 25, backgroundColor: '#272727' }}>
             <Animated.Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/202.jpg')} />
             <Animated.View style={{position: 'absolute', bottom: 8, left: 8, right: 0, height: '50%', justifyContent: 'flex-end'}}>
-                { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>kjh</Text>) : null }
+                { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoEB', color: '#f4f4f4', fontSize: 32 }}>{this.state.data.username}</Text>) : null }
             </Animated.View>
         </Animated.View>
 
@@ -88,8 +100,8 @@ class EventPage extends Component {
 
             <View style={{height: HEADER_MAX_HEIGHT}}>
                 <TouchableWithoutFeedback onPress={() => this.props.navigation.goBack()} >
-                    <SafeAreaView style={{position: 'absolute', top: 16, right: 18}}>
-                        <Ionicons name={'ios-close'} size={32} color={'#F4F4F4'} />
+                    <SafeAreaView style={{position: 'absolute', top: 16, right: 18, zIndex: 1000}}>
+                        <Ionicons name={'ios-close'} size={36} color={'#F4F4F4'} />
                     </SafeAreaView>
                 </TouchableWithoutFeedback>
             </View>            
@@ -117,7 +129,7 @@ class EventPage extends Component {
                     {
                         this.state.fontLoaded ? (
                         <Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16, opacity: .9 }}>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et. Sed diam nonumy eirmod tempor invidunt ut labore et.
+                            {this.state.data.email}
                         </Text>
                         ) : null
                     }
@@ -152,10 +164,9 @@ class EventPage extends Component {
                             <Animated.Image style={{flex: 1, width: undefined, height: undefined}} source={require('../assets/61.jpg')} />
                         </View>
                         <View style={{justifyContent: 'center', marginLeft: 4}}>
-                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoB', color: '#f4f4f4', fontSize: 16 }}>@bollwerk_graz</Text>) : null }
-                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>Bollwerk Graz</Text>) : null }
-                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>Straße blabla 25</Text>) : null }
-                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>8000 Graz</Text>) : null }
+                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoB', color: '#f4f4f4', fontSize: 16 }}>@{this.state.data.company.name}</Text>) : null }
+                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>{this.state.data.address.street}</Text>) : null }
+                            { this.state.fontLoaded ? (<Text style={{marginLeft: 8, fontFamily: 'MoL', color: '#f4f4f4', fontSize: 16 }}>{this.state.data.address.zipcode} {this.state.data.address.city}</Text>) : null }
                         </View>
                     </View>
                 </View>

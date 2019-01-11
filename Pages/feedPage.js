@@ -37,74 +37,20 @@ export class feedPage extends Component {
         super(props)
         this.state = {
             fontLoaded: false,
-            users: [
-                {
-                    "name": "Proxima Midnight",
-                    "email": "proxima@appdividend.com"
-                },
-                {
-                    "name": "Ebony Maw",
-                    "email": "ebony@appdividend.com"
-                },
-                {
-                    "name": "Black Dwarf",
-                    "email": "dwarf@appdividend.com"
-                },
-                {
-                    "name": "Mad Titan",
-                    "email": "thanos@appdividend.com"
-                },
-                {
-                    "name": "Supergiant",
-                    "email": "supergiant@appdividend.com"
-                },
-                {
-                    "name": "Loki",
-                    "email": "loki@appdividend.com"
-                },
-                {
-                    "name": "corvus",
-                    "email": "corvus@appdividend.com"
-                },
-                {
-                    "name": "Proxima Midnight",
-                    "email": "proxima1@appdividend.com"
-                },
-                {
-                    "name": "Ebony Maw",
-                    "email": "ebony1@appdividend.com"
-                },
-                {
-                    "name": "Black Dwarf",
-                    "email": "dwarf1@appdividend.com"
-                },
-                {
-                    "name": "Mad Titan",
-                    "email": "thanos1@appdividend.com"
-                },
-                {
-                    "name": "Supergiant",
-                    "email": "supergiant1@appdividend.com"
-                },
-                {
-                    "name": "Loki",
-                    "email": "loki1@appdividend.com"
-                },
-                {
-                    "name": "corvus",
-                    "email": "corvus1@appdividend.com"
-                }
-            ]
+            users: []
         }
     }
 
     async componentDidMount() {
+
+        let u = await ajax.fetchUsers();
+
         await Font.loadAsync({
             'MoEB': require('../assets/fonts/Montserrat-ExtraBold.ttf'),
             'MoB': require('../assets/fonts/Montserrat-Bold.ttf'),
             'MoL': require('../assets/fonts/Montserrat-Light.ttf'),
         });
-        this.setState({ fontLoaded: true });
+        this.setState({ fontLoaded: true, users: u });
     }    
 
     render() {
@@ -123,10 +69,10 @@ export class feedPage extends Component {
                 showsVerticalScrollIndicator={false}
                 renderItem={({item}) =>
                 <View>
-                    <EventPost Location={'EventPage'} navigation={this.props.navigation} Host={item.name} Image={require('../assets/202.jpg')} Headline={'Jägermeister'} Likes={1.234} Comments={45} JoinState={true} Text={item.email} TicketPrice={'7,99'} Visitors={1540} MinAge={18}></EventPost>
+                    <EventPost id={item.id} Location={'EventPage'} navigation={this.props.navigation} Host={item.name} Image={require('../assets/202.jpg')} Headline={item.username} Likes={1.234} Comments={45} JoinState={true} Text={item.website} TicketPrice={'7,99'} Visitors={1540} MinAge={18}></EventPost>
                 </View>
                 }
-                keyExtractor={item => item.email}
+                keyExtractor={item => item.name}
                 />
                 </SafeAreaView>
             </View>

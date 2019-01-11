@@ -9,7 +9,8 @@ export default class TextInputUP extends Component {
         super(props)
         this.state = {
             fontLoaded: false,
-            searchIcon: true
+            searchIcon: true,
+            searchString: ''
         }
     }
 
@@ -24,8 +25,17 @@ export default class TextInputUP extends Component {
     }
 
     _onPressCloseIcon = () => {
-        Keyboard.dismiss();
-        this.setState({searchIcon: true});
+        if (this.state.searchIcon) {
+            this.refs.search.focus();
+            this.setState({searchIcon: false});
+        } else {
+            Keyboard.dismiss();
+            this.setState({searchIcon: true});
+        }
+    }
+
+    search2(data) {
+        this.props.search2(data);
     }
 
   render() {
@@ -75,6 +85,8 @@ export default class TextInputUP extends Component {
                                 onFocus={() => this.setState({searchIcon: false})}
                                 returnKeyType={'search'}
                                 onSubmitEditing={() => this.setState({searchIcon: true})}
+                                onChange={(text) => {this.search2({ text })}}
+                                ref="search"
                             />
                             ) : null
                             }

@@ -58,8 +58,7 @@ class ProfilePage extends Component {
 
     const headerHight = this.state.scrollY.interpolate({
         inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
-        outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
-        extrapolate: 'clamp'
+        outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT]
     })
 
     const headerOpacity = this.state.scrollY.interpolate({
@@ -104,8 +103,8 @@ class ProfilePage extends Component {
                             ) : null
                         }
                     </View>
-                    <View style={{flex: 1, marginLeft: 8}}>
-                        <FollowButton text1={'follow'} text2={'following'}></FollowButton>
+                    <View style={{flex: 1, marginLeft: 8, alignItems: 'flex-end'}}>
+                        <FollowButton />
                     </View>
                 </View>
 

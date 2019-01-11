@@ -5,7 +5,7 @@ import SvgUri from 'react-native-svg-uri'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Font } from 'expo'
 
-import FollowButton from '../Components/FollowButton'
+import FollowButton from '../Components/FollowBu'
 
 export default class EventPost extends Component {
 
@@ -34,7 +34,7 @@ export default class EventPost extends Component {
                 </View>
             </View>
 
-            <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate(this.props.Location)} >
+            <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate(this.props.Location, {id: this.props.id})} >
                 <View style={{height: SCREEN_WIDTH, width: SCREEN_WIDTH, overflow: 'hidden', borderRadius: 5}}>
                     <Image style={{flex: 1, width: undefined, height: undefined}} source={this.props.Image} />
                     <View style={{position: 'absolute', bottom: 16, left: 16, right: 16, height: '50%', justifyContent: 'flex-end'}}>
